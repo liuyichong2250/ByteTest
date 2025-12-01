@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# Xcode build products
+build/
+DerivedData/
+
+# Xcode user-specific data
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xcresult
+
+# Swift Package Manager
+.swiftpm/
+Packages/
+
+# IDE settings
+.idea/
+.vscode/
+
+# Misc
+/*.ipa
+/*.dSYM
