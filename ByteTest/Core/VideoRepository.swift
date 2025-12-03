@@ -12,7 +12,7 @@ final class VideoRepository {
     func fetchVideos() async -> [VideoItem] {
         do {
             let url = URL(string: VideosFeedUrl)!
-            let remote: [RemoteImageInfo] = try await networkClient.getDecodable([RemoteImageInfo].self, url: url)
+            let remote: [RemoteVideoInfo] = try await networkClient.getDecodable([RemoteVideoInfo].self, url: url)
             let items = VideoFactory.makeItems(from: remote)
             try storage.saveVideos(items)
             return items
