@@ -29,7 +29,7 @@
 - 视图模型：`VideoListViewModel.load()` 异步从仓库获取并发布 `items`（`ByteTest/Core/VideoListViewModel.swift`）
 - 仓库：远程请求 → 工厂映射 → 写入缓存 → 返回（`ByteTest/Core/VideoRepository.swift`）
 - 网络：通用 `getDecodable` 解码 JSON（`ByteTest/Core/NetworkClient.swift`）
-- 工厂：将 `RemoteImageInfo` 转为 `VideoItem`（`ByteTest/Core/VideoFactory.swift`）
+- 工厂：将 `RemoteVideoInfo` 转为 `VideoItem`（`ByteTest/Core/VideoFactory.swift`）
 - 存储：JSON 原子写入与读取（`ByteTest/Core/DataStorage.swift`）
 
 ## UI 交互
@@ -40,12 +40,12 @@
 - 进度条：自定义 `UISlider`、时间显示与拖动 seek（`ByteTest/UI/VideoPlayerView.swift`）
 
 ## 网络与缓存
-- 源与常量：播放源 `PlayUrl`（HTTPS）在 `ByteTest/Core/AppConstants.swift`；图片列表源 `VideosFeedUrl` 在 `ByteTest/Core/AppConstants.swift`。
+- 源与常量：播放源 `PlayUrl`（HTTPS）在 `ByteTest/Core/AppConstants.swift`；瀑布流数据源 `VideosFeedUrl` 指向外部 API（`ByteTest/Core/AppConstants.swift`）。
 - 策略模型：远端优先、写入直通（write-through）、失败回退到本地缓存；缓存采用类型安全的 JSON 文件（`Documents/videos.json`）。
 - 端到端流程：
   - 触发加载：`ContentView` 出现后调用 `VideoListViewModel.load()`（`ByteTest/Core/VideoListViewModel.swift`）。
   - 拉取远端：仓库在 `fetchVideos()` 中用 `NetworkClient.getDecodable` 拉取并解码（`ByteTest/Core/VideoRepository.swift`，`ByteTest/Core/NetworkClient.swift`）。
-  - 结构映射：远端 `RemoteImageInfo` 由工厂转为领域模型 `VideoItem`（`ByteTest/Core/VideoFactory.swift`）。
+- 结构映射：远端 `RemoteVideoInfo` 由工厂转为领域模型 `VideoItem`（`ByteTest/Core/VideoFactory.swift`）。
   - 写入缓存：成功获取后即写入 JSON（原子写入避免半写状态）（`ByteTest/Core/DataStorage.swift`）。
   - 失败回退：网络异常时读取本地缓存，若存在则返回，否则返回空数组（`ByteTest/Core/VideoRepository.swift`，`ByteTest/Core/DataStorage.swift`）。
 - 关键实现：
