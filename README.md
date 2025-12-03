@@ -2,7 +2,7 @@
 
 ## 概述
 
-<img src="./assets/image-20251201193822625.png" alt="image-20251201193822625" style="zoom: 50%;" /><img src="./assets/image-20251201193941585.png" alt="image-20251201193941585" style="zoom:50%;" />
+<img src="./assets/image-20251203221110996.png" alt="image-20251203221110996" style="zoom:50%;" /><img src="./assets/image-20251201193941585.png" alt="image-20251201193941585" style="zoom:50%;" />
 
 - 两列视频卡片流，支持上下滑动与点击到全屏播放页。
 - 异步图片加载、网络数据获取与本地缓存；采用工厂模式与单例模式组织核心逻辑。
